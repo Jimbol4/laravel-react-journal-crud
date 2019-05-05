@@ -76,5 +76,13 @@
             @yield('content')
         </main>
     </div>
+
+    @if (auth()->user())
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'api_token' => auth()->user()->api_token,
+        ]); ?>
+    </script>
+    @endif
 </body>
 </html>
