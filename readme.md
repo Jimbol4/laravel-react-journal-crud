@@ -23,6 +23,7 @@ Install the application like so once you have updated your environment variables
 composer install
 php artisan migrate
 php artisan db:seed
+npm install && npm run dev
 ```
 
 You can then visit the app at /, but you'll need to create an account and log in to use it.
