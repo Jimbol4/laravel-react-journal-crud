@@ -19,9 +19,11 @@ Front end:
 
 Install the application like so once you have updated your environment variables/set up databases:
 
-```composer install
+```
+composer install
 php artisan migrate
-php artisan db:seed```
+php artisan db:seed
+```
 
 You can then visit the app at /, but you'll need to create an account and log in to use it.
 
@@ -29,6 +31,8 @@ You can then visit the app at /, but you'll need to create an account and log in
 
 Once you have set up and migrated a test database (possible example in config/database.php), execute the following:
 
-```./vendor/bin/phpunit```
+```
+./vendor/bin/phpunit
+```
 
 
