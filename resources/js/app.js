@@ -13,3 +13,6 @@ require('./bootstrap');
  */
 
 require('./components/Main');
+require('./components/AddPost');
+require('./components/EditPost');
+require('./components/Post');

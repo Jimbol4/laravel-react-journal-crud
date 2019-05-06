@@ -61537,6 +61537,12 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./components/Main */ "./resources/js/components/Main.js");
 
+__webpack_require__(/*! ./components/AddPost */ "./resources/js/components/AddPost.js");
+
+__webpack_require__(/*! ./components/EditPost */ "./resources/js/components/EditPost.js");
+
+__webpack_require__(/*! ./components/Post */ "./resources/js/components/Post.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -61597,6 +61603,248 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/components/AddPost.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/AddPost.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AddPost; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var AddPost =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(AddPost, _Component);
+
+  function AddPost(props) {
+    var _this;
+
+    _classCallCheck(this, AddPost);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AddPost).call(this, props));
+    _this.state = {
+      newPost: {
+        title: "",
+        body: ""
+      }
+    }; // Boilterplate code for binding meethods with `this`
+
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+  /** this mthod dynamically accepts inputs and stores it in the state **/
+
+
+  _createClass(AddPost, [{
+    key: "handleInput",
+    value: function handleInput(key, e) {
+      /**Duplicating and updating the state */
+      var state = Object.assign({}, this.state.newPost);
+      state[key] = e.target.value;
+      this.setState({
+        newPost: state
+      });
+    }
+    /**This methods is invoked when submit button is pressed */
+
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      /**
+       * A callback to the onAdd props. The current state is passed as a param
+       */
+
+      this.props.onAdd(this.state.newPost);
+      this.addForm.reset();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var divStyle = {};
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Add new post"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: divStyle
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        ref: function ref(input) {
+          return _this2.addForm = input;
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "title"
+      }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "title",
+        type: "text",
+        onChange: function onChange(e) {
+          return _this2.handleInput("title", e);
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "description"
+      }, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "body",
+        type: "text",
+        onChange: function onChange(e) {
+          return _this2.handleInput("body", e);
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        value: "Submit"
+      }))));
+    }
+  }]);
+
+  return AddPost;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/EditPost.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/EditPost.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var EditPost =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(EditPost, _Component);
+
+  function EditPost(props) {
+    var _this;
+
+    _classCallCheck(this, EditPost);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditPost).call(this, props));
+    _this.state = {
+      post: null
+    };
+    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(EditPost, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.setState({
+        post: this.props.post
+      });
+    }
+  }, {
+    key: "handleInput",
+    value: function handleInput(key, e) {
+      var state = Object.assign({}, this.state.post);
+      state[key] = e.target.value;
+      this.setState({
+        post: state
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.update(this.state.post);
+      this.editForm.reset();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var divStyle = {};
+      var post = this.state.post;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Edit post"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: divStyle
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        ref: function ref(input) {
+          return _this2.editForm = input;
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "title"
+      }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "title",
+        type: "text",
+        value: post.title,
+        onChange: function onChange(e) {
+          return _this2.handleInput("title", e);
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "description"
+      }, "Body"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        name: "body",
+        type: "text",
+        value: post.body,
+        onChange: function onChange(e) {
+          return _this2.handleInput("body", e);
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        value: "submit"
+      }))));
+    }
+  }]);
+
+  return EditPost;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (EditPost);
+
+/***/ }),
+
 /***/ "./resources/js/components/Main.js":
 /*!*****************************************!*\
   !*** ./resources/js/components/Main.js ***!
@@ -61611,6 +61859,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Post__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Post */ "./resources/js/components/Post.js");
+/* harmony import */ var _AddPost__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddPost */ "./resources/js/components/AddPost.js");
+/* harmony import */ var _EditPost__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./EditPost */ "./resources/js/components/EditPost.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61621,13 +61874,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
 
 
 
@@ -61637,17 +61894,23 @@ var Main =
 function (_Component) {
   _inherits(Main, _Component);
 
-  function Main(props) {
+  function Main() {
     var _this;
 
     _classCallCheck(this, Main);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Main).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Main).call(this));
     _this.state = {
       posts: [],
       currentPost: null,
+      editButtonClicked: false,
       api_token: window.Laravel.api_token
     };
+    _this.handleAddPost = _this.handleAddPost.bind(_assertThisInitialized(_this));
+    _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
+    _this.handleEdit = _this.handleEdit.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.handleDeleteConfirmation = _this.handleDeleteConfirmation.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -61656,9 +61919,11 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      /* fetch API in action */
       axios.get("/api/posts?api_token=" + this.state.api_token).then(function (response) {
         return response.data;
       }).then(function (posts) {
+        //Fetched post is stored in the state
         _this2.setState({
           posts: posts
         });
@@ -61667,48 +61932,138 @@ function (_Component) {
   }, {
     key: "renderPosts",
     value: function renderPosts() {
+      var _this3 = this;
+
       return this.state.posts.map(function (post) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "col-md-4 d-flex",
-          key: post.id
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card mb-4 shadow-sm"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: "https://placeimg.com/300/225/any",
-          width: "100%",
-          height: "225"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card-body flex-fill"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-          className: "card-title"
-        }, post.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "card-text"
-        }, post.body), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "d-flex justify-content-between align-items-center"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "btn-group"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          type: "button",
-          className: "btn btn-sm btn-outline-secondary"
-        }, "View"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          type: "button",
-          className: "btn btn-sm btn-outline-secondary"
-        }, "Edit"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          type: "button",
-          className: "btn btn-sm btn-outline-secondary"
-        }, "Delete"))))));
+        return (
+          /* When using list you need to specify a key
+          * attribute that is unique for each list item
+          */
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: post.id,
+            onClick: function onClick() {
+              return _this3.handleClick(post);
+            }
+          }, post.title)
+        );
+      });
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick(post) {
+      this.state.editButtonClicked = false;
+      this.setState({
+        currentPost: post
+      });
+    }
+  }, {
+    key: "handleAddPost",
+    value: function handleAddPost(post) {
+      var _this4 = this;
+
+      axios("/api/posts", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Authorization": 'Bearer ' + this.state.api_token
+        },
+        data: JSON.stringify(post)
+      }).then(function (response) {
+        return response.data;
+      }).then(function (data) {
+        _this4.setState(function (prevState) {
+          return {
+            posts: prevState.posts.concat(data),
+            currentPost: data
+          };
+        });
+      });
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete() {
+      var _this5 = this;
+
+      var currentPost = this.state.currentPost;
+      axios("/api/posts/" + this.state.currentPost.id, {
+        method: "delete",
+        headers: {
+          "Authorization": 'Bearer ' + this.state.api_token
+        }
+      }).then(function (response) {
+        var newPosts = _this5.state.posts.filter(function (item) {
+          return item !== currentPost;
+        });
+
+        _this5.setState({
+          posts: newPosts,
+          currentPost: null
+        });
+      });
+    }
+  }, {
+    key: "handleDeleteConfirmation",
+    value: function handleDeleteConfirmation(event) {
+      if (confirm("Are you sure you want to delete it?")) {
+        this.handleDelete();
+      }
+    }
+  }, {
+    key: "handleEdit",
+    value: function handleEdit() {
+      this.setState({
+        editButtonClicked: true
+      });
+    }
+  }, {
+    key: "handleUpdate",
+    value: function handleUpdate(post) {
+      var _this6 = this;
+
+      var currentPost = this.state.currentPost;
+      axios("/api/posts/" + currentPost.id, {
+        method: "put",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Authorization": 'Bearer ' + this.state.api_token
+        },
+        data: JSON.stringify(post)
+      }).then(function (response) {
+        return response.data;
+      }).then(function (data) {
+        /** updating the state */
+        var newPosts = _this6.state.posts.filter(function (item) {
+          return item !== currentPost;
+        });
+
+        _this6.setState(function (prevState) {
+          return {
+            posts: newPosts.concat(post),
+            currentPost: post
+          };
+        });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "album py-5 bg-light"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, this.renderPosts())));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-6"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All posts (", this.state.posts.length, ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.renderPosts())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-6"
+      }, this.state.editButtonClicked === true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditPost__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        post: this.state.currentPost,
+        update: this.handleUpdate
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Post__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        handleDeleteConfirmation: this.handleDeleteConfirmation,
+        post: this.state.currentPost,
+        deletepost: this.handleDelete,
+        handleEdit: this.handleEdit
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddPost__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        onAdd: this.handleAddPost
+      }))));
     }
   }]);
 
@@ -61717,9 +62072,59 @@ function (_Component) {
 
 
 
-if (document.getElementById('root')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Main, null), document.getElementById('root'));
+if (document.getElementById("root")) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Main, null), document.getElementById("root"));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/Post.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/Post.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Post = function Post(props) {
+  var post = props.post,
+      deletePost = props.deletePost,
+      handleDeleteConfirmation = props.handleDeleteConfirmation,
+      handleEdit = props.handleEdit,
+      update = props.update;
+  var divStyle = {
+    fontSize: 14
+  };
+
+  if (!post) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      style: divStyle
+    }, " No Post was selected. ");
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: divStyle
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, " ", post.title, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " ", post.body, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    value: "edit",
+    onClick: function onClick(e) {
+      return handleEdit();
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "button",
+    value: "delete",
+    onClick: function onClick(e) {
+      return handleDeleteConfirmation();
+    }
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Post);
 
 /***/ }),
 
