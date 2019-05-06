@@ -46,6 +46,7 @@ class EditPost extends Component {
                 name="title"
                 type="text"
                 className="form-control"
+                required
                 value={post.title}
                 onChange={e => this.handleInput("title", e)}
                 />
@@ -56,7 +57,8 @@ class EditPost extends Component {
               name="body"
               type="text"
               className="form-control"
-              rows="10"
+              rows="4"
+              required
               value={post.body}
               onChange={e => this.handleInput("body", e)}
             />

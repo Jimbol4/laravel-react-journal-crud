@@ -61651,35 +61651,25 @@ function (_Component) {
         title: "",
         body: ""
       }
-    }; // Boilterplate code for binding meethods with `this`
-
+    };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
     return _this;
   }
-  /** this mthod dynamically accepts inputs and stores it in the state **/
-
 
   _createClass(AddPost, [{
     key: "handleInput",
     value: function handleInput(key, e) {
-      /**Duplicating and updating the state */
       var state = Object.assign({}, this.state.newPost);
       state[key] = e.target.value;
       this.setState({
         newPost: state
       });
     }
-    /**This methods is invoked when submit button is pressed */
-
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      /**
-       * A callback to the onAdd props. The current state is passed as a param
-       */
-
       this.props.onAdd(this.state.newPost);
       this.addForm.reset();
     }
@@ -61690,6 +61680,9 @@ function (_Component) {
 
       var divStyle = {
         marginTop: "50px"
+      };
+      var textAreaStyle = {
+        height: "100%"
       };
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: divStyle
@@ -61706,6 +61699,7 @@ function (_Component) {
         name: "title",
         type: "text",
         className: "form-control",
+        required: true,
         onChange: function onChange(e) {
           return _this2.handleInput("title", e);
         }
@@ -61713,10 +61707,12 @@ function (_Component) {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "body"
-      }, "Body"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Body"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         name: "body",
-        type: "textarea",
+        rows: "4",
         className: "form-control",
+        required: true,
+        style: textAreaStyle,
         onChange: function onChange(e) {
           return _this2.handleInput("body", e);
         }
@@ -61830,6 +61826,7 @@ function (_Component) {
         name: "title",
         type: "text",
         className: "form-control",
+        required: true,
         value: post.title,
         onChange: function onChange(e) {
           return _this2.handleInput("title", e);
@@ -61842,7 +61839,8 @@ function (_Component) {
         name: "body",
         type: "text",
         className: "form-control",
-        rows: "10",
+        rows: "4",
+        required: true,
         value: post.body,
         onChange: function onChange(e) {
           return _this2.handleInput("body", e);
@@ -61911,16 +61909,17 @@ var Main =
 function (_Component) {
   _inherits(Main, _Component);
 
-  function Main() {
+  function Main(props) {
     var _this;
 
     _classCallCheck(this, Main);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Main).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Main).call(this, props));
     _this.state = {
       posts: [],
       currentPost: null,
       editButtonClicked: false,
+      // store api token sent through from the laravel backend
       api_token: window.Laravel.api_token
     };
     _this.handleAddPost = _this.handleAddPost.bind(_assertThisInitialized(_this));
@@ -61936,11 +61935,10 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      /* fetch API in action */
+      // get index list of resource
       axios.get("/api/posts?api_token=" + this.state.api_token).then(function (response) {
         return response.data;
       }).then(function (posts) {
-        //Fetched post is stored in the state
         _this2.setState({
           posts: posts
         });
@@ -61952,20 +61950,16 @@ function (_Component) {
       var _this3 = this;
 
       return this.state.posts.map(function (post) {
-        return (
-          /* When using list you need to specify a key
-          * attribute that is unique for each list item
-          */
-          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            className: "list-group-item",
-            key: post.id,
-            onClick: function onClick() {
-              return _this3.handleClick(post);
-            }
-          }, post.title)
-        );
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "list-group-item",
+          key: post.id,
+          onClick: function onClick() {
+            return _this3.handleClick(post);
+          }
+        }, post.title);
       });
-    }
+    } // set current post for the 'show' aspect
+
   }, {
     key: "handleClick",
     value: function handleClick(post) {
@@ -61973,7 +61967,8 @@ function (_Component) {
       this.setState({
         currentPost: post
       });
-    }
+    } // create a new post
+
   }, {
     key: "handleAddPost",
     value: function handleAddPost(post) {
@@ -61997,7 +61992,8 @@ function (_Component) {
           };
         });
       });
-    }
+    } // delete chosen post after confirmation
+
   }, {
     key: "handleDelete",
     value: function handleDelete() {
@@ -62023,7 +62019,8 @@ function (_Component) {
   }, {
     key: "handleDeleteConfirmation",
     value: function handleDeleteConfirmation(event) {
-      if (confirm("Are you sure you want to delete it?")) {
+      // TODO - use something like SweetAlert for this prompt
+      if (confirm("Are you sure you want to delete this post?")) {
         this.handleDelete();
       }
     }
@@ -62033,7 +62030,8 @@ function (_Component) {
       this.setState({
         editButtonClicked: true
       });
-    }
+    } // update an existing post
+
   }, {
     key: "handleUpdate",
     value: function handleUpdate(post) {
@@ -62051,7 +62049,6 @@ function (_Component) {
       }).then(function (response) {
         return response.data;
       }).then(function (data) {
-        /** updating the state */
         var newPosts = _this6.state.posts.filter(function (item) {
           return item !== currentPost;
         });
@@ -62119,9 +62116,6 @@ var Post = function Post(props) {
       handleDeleteConfirmation = props.handleDeleteConfirmation,
       handleEdit = props.handleEdit,
       update = props.update;
-  var divStyle = {
-    fontSize: 14
-  };
 
   if (!post) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

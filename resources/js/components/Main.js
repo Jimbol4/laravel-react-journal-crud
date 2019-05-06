@@ -6,12 +6,14 @@ import EditPost from "./EditPost";
 import Axios from "axios";
 
 export default class Main extends Component {
-  constructor() {
-    super();
+    
+  constructor(props) {
+    super(props);
     this.state = {
       posts: [],
       currentPost: null,
       editButtonClicked: false,
+      // store api token sent through from the laravel backend
       api_token: window.Laravel.api_token
     };
 
@@ -23,13 +25,13 @@ export default class Main extends Component {
   }
 
   componentDidMount() {
-    /* fetch API in action */
+
+    // get index list of resource
     axios.get("/api/posts?api_token=" + this.state.api_token)
       .then(response => {
         return response.data;
       })
       .then(posts => {
-        //Fetched post is stored in the state
         this.setState({ posts });
       });
   }
@@ -37,9 +39,6 @@ export default class Main extends Component {
   renderPosts() {
     return this.state.posts.map(post => {
       return (
-        /* When using list you need to specify a key
-        * attribute that is unique for each list item
-        */
         <li className="list-group-item" key={post.id} onClick={() => this.handleClick(post)}>
           {post.title}
         </li>
@@ -47,11 +46,13 @@ export default class Main extends Component {
     });
   }
 
+  // set current post for the 'show' aspect
   handleClick(post) {
     this.state.editButtonClicked = false;
     this.setState({ currentPost: post });
   }
 
+  // create a new post
   handleAddPost(post) {
 
     axios("/api/posts", {
@@ -74,6 +75,7 @@ export default class Main extends Component {
       });
   }
 
+  // delete chosen post after confirmation
   handleDelete() {
     const currentPost = this.state.currentPost;
     axios("/api/posts/" + this.state.currentPost.id, {
@@ -91,7 +93,9 @@ export default class Main extends Component {
   }
 
   handleDeleteConfirmation(event) {
-    if (confirm("Are you sure you want to delete it?")) {
+    
+    // TODO - use something like SweetAlert for this prompt
+    if (confirm("Are you sure you want to delete this post?")) {
       this.handleDelete();
     }
   }
@@ -100,6 +104,7 @@ export default class Main extends Component {
     this.setState({ editButtonClicked: true });
   }
 
+  // update an existing post
   handleUpdate(post) {
     const currentPost = this.state.currentPost;
     axios("/api/posts/" + currentPost.id, {
@@ -115,7 +120,6 @@ export default class Main extends Component {
         return response.data;
       })
       .then(data => {
-        /** updating the state */
         var newPosts = this.state.posts.filter(function(item) {
           return item !== currentPost;
         });

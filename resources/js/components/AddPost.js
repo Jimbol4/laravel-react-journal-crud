@@ -11,32 +11,25 @@ export default class AddPost extends Component {
       }
     };
 
-    // Boilterplate code for binding meethods with `this`
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
-  /** this mthod dynamically accepts inputs and stores it in the state **/
   handleInput(key, e) {
-    /**Duplicating and updating the state */
     var state = Object.assign({}, this.state.newPost);
     state[key] = e.target.value;
     this.setState({ newPost: state });
   }
 
-  /**This methods is invoked when submit button is pressed */
   handleSubmit(e) {
     e.preventDefault();
-
-    /**
-     * A callback to the onAdd props. The current state is passed as a param
-     */
     this.props.onAdd(this.state.newPost);
     this.addForm.reset();
   }
 
   render() {
     const divStyle = {marginTop: "50px"};
+    const textAreaStyle = {height: "100%"};
     return (
       <div style={divStyle}>
         <h2>Add new post</h2>
@@ -52,16 +45,19 @@ export default class AddPost extends Component {
               name="title"
               type="text"
               className="form-control"
+              required
               onChange={e => this.handleInput("title", e)}
             />
             </div>
 
             <div className="form-group">
                 <label htmlFor="body">Body</label>
-                <input
+                <textarea
                 name="body"
-                type="textarea"
+                rows="4"
                 className="form-control"
+                required
+                style={textAreaStyle}
                 onChange={e => this.handleInput("body", e)}
                 />
             </div>

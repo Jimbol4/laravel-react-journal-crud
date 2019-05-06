@@ -9,10 +9,6 @@ const Post = props => {
     update
   } = props;
 
-  const divStyle = {
-    fontSize: 14
-  };
-
   if (!post) {
     return <div className="col"><h2>No Post has been selected.</h2></div>;
   }
