@@ -36,30 +36,37 @@ export default class AddPost extends Component {
   }
 
   render() {
-    const divStyle = {};
+    const divStyle = {marginTop: "50px"};
     return (
-      <div>
+      <div style={divStyle}>
         <h2>Add new post</h2>
 
-        <div style={divStyle}>
+        <div>
           <form
             onSubmit={this.handleSubmit}
             ref={input => (this.addForm = input)}
           >
+          <div className="form-group">
             <label htmlFor="title">Title</label>
             <input
               name="title"
               type="text"
+              className="form-control"
               onChange={e => this.handleInput("title", e)}
             />
-            <label htmlFor="description">Description</label>
-            <input
-              name="body"
-              type="text"
-              onChange={e => this.handleInput("body", e)}
-            />
+            </div>
 
-            <input type="submit" value="Submit" />
+            <div className="form-group">
+                <label htmlFor="body">Body</label>
+                <input
+                name="body"
+                type="textarea"
+                className="form-control"
+                onChange={e => this.handleInput("body", e)}
+                />
+            </div>
+
+            <input type="submit" value="Submit" className="btn btn-primary" />
           </form>
         </div>
       </div>

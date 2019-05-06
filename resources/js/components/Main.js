@@ -40,7 +40,7 @@ export default class Main extends Component {
         /* When using list you need to specify a key
         * attribute that is unique for each list item
         */
-        <li key={post.id} onClick={() => this.handleClick(post)}>
+        <li className="list-group-item" key={post.id} onClick={() => this.handleClick(post)}>
           {post.title}
         </li>
       );
@@ -128,10 +128,10 @@ export default class Main extends Component {
 
   render() {
     return (
-      <div>
+      <div className="row">
         <div className="col-md-6">
           <h3>All posts ({this.state.posts.length})</h3>
-          <ul>{this.renderPosts()}</ul>
+          <ul className="list-group">{this.renderPosts()}</ul>
         </div>
         <div className="col-md-6">
           {this.state.editButtonClicked === true ? (

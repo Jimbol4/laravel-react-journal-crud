@@ -61688,33 +61688,42 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var divStyle = {};
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Add new post"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      var divStyle = {
+        marginTop: "50px"
+      };
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: divStyle
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Add new post"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         ref: function ref(input) {
           return _this2.addForm = input;
         }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "title"
       }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "title",
         type: "text",
+        className: "form-control",
         onChange: function onChange(e) {
           return _this2.handleInput("title", e);
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "description"
-      }, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "body"
+      }, "Body"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "body",
-        type: "text",
+        type: "textarea",
+        className: "form-control",
         onChange: function onChange(e) {
           return _this2.handleInput("body", e);
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
-        value: "Submit"
+        value: "Submit",
+        className: "btn btn-primary"
       }))));
     }
   }]);
@@ -61813,27 +61822,35 @@ function (_Component) {
         ref: function ref(input) {
           return _this2.editForm = input;
         }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "title"
       }, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         name: "title",
         type: "text",
+        className: "form-control",
         value: post.title,
         onChange: function onChange(e) {
           return _this2.handleInput("title", e);
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "form-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "description"
       }, "Body"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         name: "body",
         type: "text",
+        className: "form-control",
+        rows: "10",
         value: post.body,
         onChange: function onChange(e) {
           return _this2.handleInput("body", e);
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
-        value: "submit"
+        value: "Update",
+        className: "btn btn-primary"
       }))));
     }
   }]);
@@ -61940,6 +61957,7 @@ function (_Component) {
           * attribute that is unique for each list item
           */
           react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            className: "list-group-item",
             key: post.id,
             onClick: function onClick() {
               return _this3.handleClick(post);
@@ -62049,9 +62067,13 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-6"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All posts (", this.state.posts.length, ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.renderPosts())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "All posts (", this.state.posts.length, ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "list-group"
+      }, this.renderPosts())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-md-6"
       }, this.state.editButtonClicked === true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditPost__WEBPACK_IMPORTED_MODULE_4__["default"], {
         post: this.state.currentPost,
@@ -62103,21 +62125,23 @@ var Post = function Post(props) {
 
   if (!post) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      style: divStyle
-    }, " No Post was selected. ");
+      className: "col"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "No Post has been selected."));
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: divStyle
+    className: "col"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, " ", post.title, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " ", post.body, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "button",
-    value: "edit",
+    value: "Edit",
+    className: "btn btn-primary",
     onClick: function onClick(e) {
       return handleEdit();
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "button",
-    value: "delete",
+    className: "btn btn-secondary",
+    value: "Delete",
     onClick: function onClick(e) {
       return handleDeleteConfirmation();
     }

@@ -40,22 +40,28 @@ class EditPost extends Component {
             onSubmit={this.handleSubmit}
             ref={input => (this.editForm = input)}
           >
+            <div className="form-group">
             <label htmlFor="title">Title</label>
-            <input
-              name="title"
-              type="text"
-              value={post.title}
-              onChange={e => this.handleInput("title", e)}
-            />
+                <input
+                name="title"
+                type="text"
+                className="form-control"
+                value={post.title}
+                onChange={e => this.handleInput("title", e)}
+                />
+            </div>
+            <div class="form-group">
             <label htmlFor="description">Body</label>
             <textarea
               name="body"
               type="text"
+              className="form-control"
+              rows="10"
               value={post.body}
               onChange={e => this.handleInput("body", e)}
             />
-
-            <input type="submit" value="submit" />
+            </div>
+            <input type="submit" value="Update" className="btn btn-primary" />
           </form>
         </div>
       </div>

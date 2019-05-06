@@ -14,17 +14,18 @@ const Post = props => {
   };
 
   if (!post) {
-    return <div style={divStyle}> No Post was selected. </div>;
+    return <div className="col"><h2>No Post has been selected.</h2></div>;
   }
 
   return (
-    <div style={divStyle}>
+    <div className="col">
       <h2> {post.title} </h2>
       <p> {post.body} </p>
-      <input type="button" value="edit" onClick={e => handleEdit()} />
+      <input type="button" value="Edit" className="btn btn-primary" onClick={e => handleEdit()} />
       <input
         type="button"
-        value="delete"
+        className="btn btn-secondary"
+        value="Delete"
         onClick={e => handleDeleteConfirmation()}
       />
     </div>
